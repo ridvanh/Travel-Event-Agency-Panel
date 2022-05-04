@@ -91,6 +91,7 @@ public class addDataScene extends Application{
                             "VALUES ("+ id +",'"+ tf1.getText() +"','"+ tf2.getText() +"','"+ tf3.getText() +"','"+ tf4.getText() +"','"+ tf5.getText() +"','"+ tf6.getText() +"','"+ tf7.getText() +"')";
                     ps = conn.prepareStatement(query2);
                     ps.executeUpdate();
+                    conn.close();
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
@@ -162,6 +163,7 @@ public class addDataScene extends Application{
                             "VALUES ("+ id +",'"+ tf1.getText() +"','"+ tf2.getText() +"','"+ tf3.getText() +"','"+ tf4.getText() +"','"+ tf5.getText() +"','"+ tf6.getText() +"','"+ tf7.getText() +"')";
                     ps = conn.prepareStatement(query2);
                     ps.executeUpdate();
+                    conn.close();
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
@@ -229,6 +231,7 @@ public class addDataScene extends Application{
                             "VALUES ("+ id +",'"+ tf1.getText() +"','"+ tf2.getText() +"','"+ tf3.getText() +"','"+ tf4.getText() +"','"+ tf5.getText() +"','"+ tf6.getText() +"')";
                     ps = conn.prepareStatement(query2);
                     ps.executeUpdate();
+                    conn.close();
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
@@ -287,6 +290,7 @@ public class addDataScene extends Application{
                             "VALUES ("+ id +",'"+ tf1.getText() +"','"+ tf2.getText() +"','"+ tf3.getText()+"')";
                     ps = conn.prepareStatement(query2);
                     ps.executeUpdate();
+                    conn.close();
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
@@ -351,6 +355,7 @@ public class addDataScene extends Application{
                             "VALUES ("+ id +",'"+ tf1.getText() +"','"+ tf2.getText() +"','"+ Integer.getInteger(tf3.getText())+"','"+ tf4.getText()+"','"+ tf5.getText() +"')";
                     ps = conn.prepareStatement(query2);
                     ps.executeUpdate();
+                    conn.close();
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
@@ -415,6 +420,7 @@ public class addDataScene extends Application{
                             "VALUES ("+ id +",'"+ tf1.getText() +"','"+ tf2.getText() +"','"+ Integer.getInteger(tf3.getText())+"','"+ tf4.getText()+"','"+ tf5.getText() +"')";
                     ps = conn.prepareStatement(query2);
                     ps.executeUpdate();
+                    conn.close();
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
@@ -476,6 +482,7 @@ public class addDataScene extends Application{
                             "VALUES ("+ id +",'"+ tf1.getText() +"','"+ tf2.getText() +"','"+ tf3.getText()+ "','" + tf4.getText() +"')";
                     ps = conn.prepareStatement(query2);
                     ps.executeUpdate();
+                    conn.close();
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
@@ -521,6 +528,7 @@ public class addDataScene extends Application{
                     String query2 = "DELETE FROM firma WHERE steuerNr = " + tf1.getText();
                     ps = conn.prepareStatement(query2);
                     ps.executeUpdate();
+                    conn.close();
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }

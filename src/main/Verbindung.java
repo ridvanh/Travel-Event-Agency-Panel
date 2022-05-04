@@ -57,6 +57,7 @@ public class Verbindung {
             }
 
             tableView.setItems(data);
+            conn.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -92,6 +93,7 @@ public class Verbindung {
             }
 
             tableView.setItems(data);
+            conn.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -127,6 +129,7 @@ public class Verbindung {
             }
 
             tableView.setItems(data);
+            conn.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -162,6 +165,7 @@ public class Verbindung {
             }
 
             tableView.setItems(data);
+            conn.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -197,6 +201,7 @@ public class Verbindung {
             }
 
             tableView.setItems(data);
+            conn.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -232,6 +237,7 @@ public class Verbindung {
             }
 
             tableView.setItems(data);
+            conn.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -267,6 +273,7 @@ public class Verbindung {
             }
 
             tableView.setItems(data);
+            conn.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
