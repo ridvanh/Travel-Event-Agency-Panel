@@ -280,5 +280,4 @@ public class Verbindung {
         return tableView;
     }
 
-    public void idChecker(int id, String pw){}
 }

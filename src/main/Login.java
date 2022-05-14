@@ -20,7 +20,7 @@ public class Login extends Application{
 
     @Override
     public void start(Stage stage) throws Exception {
-        //Scene1
+        //loginScene
         Label kontoID = new Label("Konto ID");
         Label kontoPasswort = new Label("Passwort");
         TextField tf1 = new TextField();
@@ -67,12 +67,36 @@ public class Login extends Application{
 
         Menu editMenu = new Menu("Bearbeiten");
         MenuItem administrator1 = new MenuItem("Administratorkonto bearbeiten");
+        administrator1.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                addScene.editAdministrator(stage);
+            }
+        });
         MenuItem mitarbeiter1 = new MenuItem("Mitarbeiterkonto bearbeiten");
+        mitarbeiter1.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                addScene.editMitarbeiter(stage);
+            }
+        });
         editMenu.getItems().addAll(administrator1,mitarbeiter1);
 
         Menu deleteMenu = new Menu("Löschen");
         MenuItem administrator2 = new MenuItem("Administratorkonto löschen");
+        administrator2.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                addScene.deleteAdmin(stage);
+            }
+        });
         MenuItem mitarbeiter2 = new MenuItem("Mitarbeiterkonto löschen");
+        mitarbeiter2.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                addScene.deleteMitarbeiter(stage);
+            }
+        });
         deleteMenu.getItems().addAll(administrator2, mitarbeiter2);
 
         Menu data = new Menu("Daten");
@@ -127,6 +151,40 @@ public class Login extends Application{
                 newStage.show();
             }
         });
+        MenuItem rechnungen = new MenuItem("Rechnungen");
+        rechnungen.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                BorderPane bp = new BorderPane();
+                bp.setCenter(DBVerbindung.getRechnungen());
+                Scene tableScene = new Scene(bp, 800,600);
+
+                Stage newStage = new Stage();
+
+                newStage.setTitle("Rechnungen");
+                newStage.setScene(tableScene);
+                newStage.setX(stage.getX() + 200);
+                newStage.setY(stage.getY() + 100);
+                newStage.show();
+            }
+        });
+        MenuItem reservierungen = new MenuItem("Reservierungen");
+        reservierungen.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                BorderPane bp = new BorderPane();
+                bp.setCenter(DBVerbindung.getReservierungen());
+                Scene tableScene = new Scene(bp, 800,600);
+
+                Stage newStage = new Stage();
+
+                newStage.setTitle("Reservierungen");
+                newStage.setScene(tableScene);
+                newStage.setX(stage.getX() + 200);
+                newStage.setY(stage.getY() + 100);
+                newStage.show();
+            }
+        });
         MenuItem firmen = new MenuItem("Firmen");
         firmen.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -144,7 +202,24 @@ public class Login extends Application{
                 newStage.show();
             }
         });
-        data.getItems().addAll(adminKonten, mitKonten, kunden, firmen);
+        MenuItem veranstaltungen = new MenuItem("Veranstaltungen");
+        veranstaltungen.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                BorderPane bp = new BorderPane();
+                bp.setCenter(DBVerbindung.getVeranstaltungen());
+                Scene tableScene = new Scene(bp, 800,600);
+
+                Stage newStage = new Stage();
+
+                newStage.setTitle("Veranstaltungen");
+                newStage.setScene(tableScene);
+                newStage.setX(stage.getX() + 200);
+                newStage.setY(stage.getY() + 100);
+                newStage.show();
+            }
+        });
+        data.getItems().addAll(adminKonten, mitKonten, kunden, rechnungen, reservierungen, firmen, veranstaltungen);
 
         Menu GVStatus = new Menu("GV-Status");
         MenuItem monat = new MenuItem("Monatlich");
@@ -218,16 +293,64 @@ public class Login extends Application{
 
         Menu editMenuM = new Menu("Bearbeiten");
         MenuItem kundeM1 = new MenuItem("Kunde bearbeiten");
+        kundeM1.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                addScene.editKunde(stage);
+            }
+        });
         MenuItem rechnungM1 = new MenuItem("Rechnung bearbeiten");
+        rechnungM1.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                addScene.editRechnung(stage);
+            }
+        });
         MenuItem reservierungM1 = new MenuItem("Reservierung bearbeiten");
+        reservierungM1.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                addScene.editReservierung(stage);
+            }
+        });
         MenuItem firmaM1 = new MenuItem("Firma bearbeiten");
+        firmaM1.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                addScene.editFirma(stage);
+            }
+        });
         MenuItem veranstaltungM1 = new MenuItem("Veranstaltung bearbeiten");
+        veranstaltungM1.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                addScene.editVeranstaltung(stage);
+            }
+        });
         editMenuM.getItems().addAll(kundeM1,rechnungM1,reservierungM1,firmaM1,veranstaltungM1);
 
         Menu deleteMenuM = new Menu("Löschen");
         MenuItem kundeM2 = new MenuItem("Kunde löschen");
+        kundeM2.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                addScene.deleteKunde(stage);
+            }
+        });
         MenuItem rechnungM2 = new MenuItem("Rechnung löschen");
+        rechnungM2.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                addScene.deleteRechnung(stage);
+            }
+        });
         MenuItem reservierungM2 = new MenuItem("Reservierung löschen");
+        reservierungM2.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                addScene.deleteReservierung(stage);
+            }
+        });
         MenuItem firmaM2 = new MenuItem("Firma löschen");
         firmaM2.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -236,6 +359,12 @@ public class Login extends Application{
             }
         });
         MenuItem veranstaltungM2 = new MenuItem("Veranstaltung löschen");
+        veranstaltungM2.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                addScene.deleteVeranstaltung(stage);
+            }
+        });
         deleteMenuM.getItems().addAll(kundeM2,rechnungM2,reservierungM2,firmaM2,veranstaltungM2);
 
         Menu dataM = new Menu("Daten");
