@@ -279,5 +279,4 @@ public class Verbindung {
         }
         return tableView;
     }
-
 }

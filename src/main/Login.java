@@ -12,9 +12,14 @@ import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class Login extends Application{
 
-    Scene loginScene, adminScene, mitarbeiterScene;
+    Scene loginScene, errorScene, adminScene, mitarbeiterScene;
     Verbindung DBVerbindung = new Verbindung();
     addDataScene addScene = new addDataScene();
 
@@ -42,6 +47,21 @@ public class Login extends Application{
         gp.setBackground(new Background(bg));
 
         loginScene = new Scene(gp, 300, 275);
+
+        //errorScene
+        Label text = new Label("Falsche ID oder Passwort. Bitte überprüfen Sie Ihre Eingaben.");
+        //Button ok = new Button("Ok");
+
+        GridPane gpw = new GridPane();
+        gpw.setAlignment(Pos.CENTER);
+        gpw.setHgap(10);
+        gpw.setVgap(10);
+        gpw.setPadding(new Insets(25,25,25,25));
+
+        gpw.addRow(0, text);
+        //gpw.addRow(1, ok);
+
+        errorScene = new Scene(gpw, 400, 75);
 
         //adminScene
         BorderPane bp = new BorderPane();
@@ -459,27 +479,70 @@ public class Login extends Application{
         menuBarM.getMenus().addAll(addMenuM, editMenuM, deleteMenuM, dataM, logout);
         bp2.setBackground(new Background(bg));
 
-
-
-
         einloggen.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                if(tf1.getLength() == 4){
-                    stage.setScene(adminScene);
-                    stage.setTitle("TauTour(Administrator)");
-                }else if(tf1.getLength() == 3){
-                    stage.setScene(mitarbeiterScene);
-                    stage.setTitle("TauTour(Mitarbeiter)");
-                }else {
-                    System.out.println("Falsche Eingabe!");
+                int id = Integer.parseInt(tf1.getText());
+                if(loginCheck(id, tf2.getText())){
+                    if(String.valueOf(id).length() == 4){
+                        stage.setScene(adminScene);
+                        stage.setTitle("TauTour (Administrator)");
+                    }else{
+                        stage.setScene(mitarbeiterScene);
+                        stage.setTitle("TauTour (Mitarbeiter)");
+                    }
+                } else {
+                    Stage errorStage = new Stage();
+                    errorStage.setTitle("Error");
+                    errorStage.setScene(errorScene);
+                    errorStage.initModality(Modality.WINDOW_MODAL);
+                    errorStage.initOwner(stage);
+                    errorStage.setX(stage.getX() - 50);
+                    errorStage.setY(stage.getY() + 125);
+                    errorStage.show();
                 }
             }
         });
+
         stage.setScene(loginScene);
         stage.setTitle("TauTour");
         stage.show();
 
+    }
+
+    public boolean loginCheck(int id, String pass){
+        Connection conn = Verbindung.connect();
+        PreparedStatement ps = null;
+        ResultSet rs;
+        ResultSet rs2;
+        try {
+            if(String.valueOf(id).length() == 4){
+                ps = conn.prepareStatement("SELECT * FROM administrator WHERE id = " + id);
+                rs = ps.executeQuery();
+                if(rs.getString(4).equals(pass)){
+                    conn.close();
+                    return true;
+                } else {
+                    conn.close();
+                    return false;
+                }
+            } else if(String.valueOf(id).length() == 3){
+                ps = conn.prepareStatement("SELECT * FROM mitarbeiter WHERE id = " + id);
+                rs2 = ps.executeQuery();
+                if(rs2.getString(4).equals(pass)){
+                    conn.close();
+                    return true;
+                } else {
+                    conn.close();
+                    return false;
+                }
+            }
+            return false;
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+
+        return false;
     }
 
     public static void main(String[] args) {
