@@ -4,6 +4,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
@@ -11,7 +12,9 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.stage.StageStyle;
 
+import javax.swing.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -19,7 +22,7 @@ import java.sql.SQLException;
 
 public class Login extends Application{
 
-    Scene loginScene, errorScene, adminScene, mitarbeiterScene;
+    Scene loginScene, errorScene, logoutScene, adminScene, mitarbeiterScene;
     Verbindung DBVerbindung = new Verbindung();
     addDataScene addScene = new addDataScene();
 
@@ -50,7 +53,6 @@ public class Login extends Application{
 
         //errorScene
         Label text = new Label("Falsche ID oder Passwort. Bitte überprüfen Sie Ihre Eingaben.");
-        //Button ok = new Button("Ok");
 
         GridPane gpw = new GridPane();
         gpw.setAlignment(Pos.CENTER);
@@ -59,14 +61,35 @@ public class Login extends Application{
         gpw.setPadding(new Insets(25,25,25,25));
 
         gpw.addRow(0, text);
-        //gpw.addRow(1, ok);
 
         errorScene = new Scene(gpw, 400, 75);
 
         //adminScene
+        Image image = new Image("C:\\Users\\PC\\Desktop\\exit.png");
+        ImageView imageView = new ImageView(image);
+        imageView.setFitHeight(30);
+        imageView.setFitWidth(30);
+        Button ausloggen = new Button("",imageView);
+        ausloggen.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                addScene.logoutScene(stage, loginScene);
+            }
+        });
+
+
+        HBox hbox = new HBox();
+        hbox.setAlignment(Pos.BOTTOM_RIGHT);
+        hbox.setPadding(new Insets(25));
+        hbox.getChildren().addAll(ausloggen);
+
         BorderPane bp = new BorderPane();
+        bp.setBottom(hbox);
+
         adminScene = new Scene(bp, 800, 600);
         MenuBar menuBar = new MenuBar();
+
+
 
         Menu addMenu = new Menu("Neu");
         MenuItem administrator = new MenuItem("Administratorkonto erstellen");
@@ -134,6 +157,7 @@ public class Login extends Application{
                 newStage.setScene(tableScene);
                 newStage.setX(stage.getX() + 200);
                 newStage.setY(stage.getY() + 100);
+                newStage.setResizable(false);
                 newStage.show();
             }
         });
@@ -151,6 +175,7 @@ public class Login extends Application{
                 newStage.setScene(tableScene);
                 newStage.setX(stage.getX() + 200);
                 newStage.setY(stage.getY() + 100);
+                newStage.setResizable(false);
                 newStage.show();
             }
         });
@@ -168,6 +193,7 @@ public class Login extends Application{
                 newStage.setScene(tableScene);
                 newStage.setX(stage.getX() + 200);
                 newStage.setY(stage.getY() + 100);
+                newStage.setResizable(false);
                 newStage.show();
             }
         });
@@ -185,6 +211,7 @@ public class Login extends Application{
                 newStage.setScene(tableScene);
                 newStage.setX(stage.getX() + 200);
                 newStage.setY(stage.getY() + 100);
+                newStage.setResizable(false);
                 newStage.show();
             }
         });
@@ -202,6 +229,7 @@ public class Login extends Application{
                 newStage.setScene(tableScene);
                 newStage.setX(stage.getX() + 200);
                 newStage.setY(stage.getY() + 100);
+                newStage.setResizable(false);
                 newStage.show();
             }
         });
@@ -219,6 +247,7 @@ public class Login extends Application{
                 newStage.setScene(tableScene);
                 newStage.setX(stage.getX() + 200);
                 newStage.setY(stage.getY() + 100);
+                newStage.setResizable(false);
                 newStage.show();
             }
         });
@@ -236,6 +265,7 @@ public class Login extends Application{
                 newStage.setScene(tableScene);
                 newStage.setX(stage.getX() + 200);
                 newStage.setY(stage.getY() + 100);
+                newStage.setResizable(false);
                 newStage.show();
             }
         });
@@ -243,32 +273,62 @@ public class Login extends Application{
 
         Menu GVStatus = new Menu("GV-Status");
         MenuItem monat = new MenuItem("Monatlich");
+        monat.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                BorderPane bp = new BorderPane();
+                bp.setCenter(DBVerbindung.showMonthlyIncome());
+                Scene tableScene = new Scene(bp, 800,600);
+
+                Stage newStage = new Stage();
+
+                newStage.setTitle("Gewinn(monatlich)");
+                newStage.setScene(tableScene);
+                newStage.setX(stage.getX() + 200);
+                newStage.setY(stage.getY() + 100);
+                newStage.setResizable(false);
+                newStage.show();
+            }
+        });
         MenuItem jahr = new MenuItem("Jährlich");
+        jahr.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                BorderPane bp = new BorderPane();
+                bp.setCenter(DBVerbindung.showYearlyIncome());
+                Scene tableScene = new Scene(bp, 800,600);
+
+                Stage newStage = new Stage();
+
+                newStage.setTitle("Gewinn(jährlich)");
+                newStage.setScene(tableScene);
+                newStage.setX(stage.getX() + 200);
+                newStage.setY(stage.getY() + 100);
+                newStage.setResizable(false);
+                newStage.show();
+            }
+        });
         GVStatus.getItems().addAll(monat,jahr);
 
-        Menu logout = new Menu("Ausloggen");
-        MenuItem change = new MenuItem("Konto wechseln");
-        change.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                stage.setScene(loginScene);
-            }
-        });
-        MenuItem exit = new MenuItem("Abschalten");
-        exit.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                System.exit(0);
-            }
-        });
-        logout.getItems().addAll(change, exit);
-
         bp.setTop(menuBar);
-        menuBar.getMenus().addAll(addMenu, editMenu, deleteMenu, GVStatus, data, logout);
+        menuBar.getMenus().addAll(addMenu, editMenu, deleteMenu, GVStatus, data);
         bp.setBackground(new Background(bg));
 
         //mitarbeiterScene
+        Button ausloggen2 = new Button("",imageView);
+        ausloggen2.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                addScene.logoutScene(stage, loginScene);
+            }
+        });
+
+        HBox hbox2 = new HBox();
+        hbox2.setAlignment(Pos.BOTTOM_RIGHT);
+        hbox2.setPadding(new Insets(25));
+        hbox2.getChildren().addAll(ausloggen2);
         BorderPane bp2 = new BorderPane();
+        bp2.setBottom(hbox2);
         mitarbeiterScene = new Scene(bp2, 800, 600);
 
         MenuBar menuBarM = new MenuBar();
@@ -402,6 +462,7 @@ public class Login extends Application{
                 newStage.setScene(tableScene);
                 newStage.setX(stage.getX() + 200);
                 newStage.setY(stage.getY() + 100);
+                newStage.setResizable(false);
                 newStage.show();
             }
         });
@@ -419,6 +480,7 @@ public class Login extends Application{
                 newStage.setScene(tableScene);
                 newStage.setX(stage.getX() + 200);
                 newStage.setY(stage.getY() + 100);
+                newStage.setResizable(false);
                 newStage.show();
             }
         });
@@ -436,6 +498,7 @@ public class Login extends Application{
                 newStage.setScene(tableScene);
                 newStage.setX(stage.getX() + 200);
                 newStage.setY(stage.getY() + 100);
+                newStage.setResizable(false);
                 newStage.show();
             }
         });
@@ -453,6 +516,7 @@ public class Login extends Application{
                 newStage.setScene(tableScene);
                 newStage.setX(stage.getX() + 200);
                 newStage.setY(stage.getY() + 100);
+                newStage.setResizable(false);
                 newStage.show();
             }
         });
@@ -470,13 +534,14 @@ public class Login extends Application{
                 newStage.setScene(tableScene);
                 newStage.setX(stage.getX() + 200);
                 newStage.setY(stage.getY() + 100);
+                newStage.setResizable(false);
                 newStage.show();
             }
         });
         dataM.getItems().addAll(kundeM3,rechnungM3,reservierungM3,firmaM3,veranstaltungM3);
 
         bp2.setTop(menuBarM);
-        menuBarM.getMenus().addAll(addMenuM, editMenuM, deleteMenuM, dataM, logout);
+        menuBarM.getMenus().addAll(addMenuM, editMenuM, deleteMenuM, dataM);
         bp2.setBackground(new Background(bg));
 
         einloggen.setOnAction(new EventHandler<ActionEvent>() {
@@ -492,20 +557,19 @@ public class Login extends Application{
                         stage.setTitle("TauTour (Mitarbeiter)");
                     }
                 } else {
-                    Stage errorStage = new Stage();
-                    errorStage.setTitle("Error");
-                    errorStage.setScene(errorScene);
-                    errorStage.initModality(Modality.WINDOW_MODAL);
-                    errorStage.initOwner(stage);
-                    errorStage.setX(stage.getX() - 50);
-                    errorStage.setY(stage.getY() + 125);
-                    errorStage.show();
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error");
+                    alert.setHeaderText("Falsche Eingabe");
+                    alert.setContentText("Bitte kontrollieren Sie Ihre Eingabe");
+
+                    alert.showAndWait();
                 }
             }
         });
 
         stage.setScene(loginScene);
         stage.setTitle("TauTour");
+        stage.setResizable(false);
         stage.show();
 
     }
