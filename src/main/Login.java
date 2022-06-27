@@ -96,14 +96,14 @@ public class Login extends Application{
         administrator.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                addScene.addAdmin(stage);
+                DBVerbindung.addAdmin(stage);
             }
         });
         MenuItem mitarbeiter = new MenuItem("Mitarbeiterkonto erstellen");
         mitarbeiter.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                addScene.addMitarbeiter(stage);
+                DBVerbindung.addMitarbeiter(stage);
             }
         });
         addMenu.getItems().addAll(administrator, mitarbeiter);
@@ -113,14 +113,14 @@ public class Login extends Application{
         administrator1.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                addScene.editAdministrator(stage);
+                DBVerbindung.editAdministrator(stage);
             }
         });
         MenuItem mitarbeiter1 = new MenuItem("Mitarbeiterkonto bearbeiten");
         mitarbeiter1.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                addScene.editMitarbeiter(stage);
+                DBVerbindung.editMitarbeiter(stage);
             }
         });
         editMenu.getItems().addAll(administrator1,mitarbeiter1);
@@ -130,14 +130,14 @@ public class Login extends Application{
         administrator2.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                addScene.deleteAdmin(stage);
+                DBVerbindung.deleteAdmin(stage);
             }
         });
         MenuItem mitarbeiter2 = new MenuItem("Mitarbeiterkonto löschen");
         mitarbeiter2.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                addScene.deleteMitarbeiter(stage);
+                DBVerbindung.deleteMitarbeiter(stage);
             }
         });
         deleteMenu.getItems().addAll(administrator2, mitarbeiter2);
@@ -338,35 +338,35 @@ public class Login extends Application{
         kundeM.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                addScene.addKunde(stage);
+                DBVerbindung.addKunde(stage);
             }
         });
         MenuItem rechnungM = new MenuItem("Rechnung erstellen");
         rechnungM.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                addScene.addRechnung(stage);
+                DBVerbindung.addRechnung(stage);
             }
         });
         MenuItem reservierungM = new MenuItem("Reservierung erstellen");
         reservierungM.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                addScene.addReservierung(stage);
+                DBVerbindung.addReservierung(stage);
             }
         });
         MenuItem firmaM = new MenuItem("Firma erstellen");
         firmaM.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                addScene.addFirma(stage);
+                DBVerbindung.addFirma(stage);
             }
         });
         MenuItem veranstaltungM = new MenuItem("Veranstaltung erstellen");
         veranstaltungM.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                addScene.addVeranstaltung(stage);
+                DBVerbindung.addVeranstaltung(stage);
             }
         });
         addMenuM.getItems().addAll(kundeM,rechnungM,reservierungM,firmaM,veranstaltungM);
@@ -376,35 +376,35 @@ public class Login extends Application{
         kundeM1.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                addScene.editKunde(stage);
+                DBVerbindung.editKunde(stage);
             }
         });
         MenuItem rechnungM1 = new MenuItem("Rechnung bearbeiten");
         rechnungM1.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                addScene.editRechnung(stage);
+                DBVerbindung.editRechnung(stage);
             }
         });
         MenuItem reservierungM1 = new MenuItem("Reservierung bearbeiten");
         reservierungM1.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                addScene.editReservierung(stage);
+                DBVerbindung.editReservierung(stage);
             }
         });
         MenuItem firmaM1 = new MenuItem("Firma bearbeiten");
         firmaM1.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                addScene.editFirma(stage);
+                DBVerbindung.editFirma(stage);
             }
         });
         MenuItem veranstaltungM1 = new MenuItem("Veranstaltung bearbeiten");
         veranstaltungM1.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                addScene.editVeranstaltung(stage);
+                DBVerbindung.editVeranstaltung(stage);
             }
         });
         editMenuM.getItems().addAll(kundeM1,rechnungM1,reservierungM1,firmaM1,veranstaltungM1);
@@ -414,35 +414,35 @@ public class Login extends Application{
         kundeM2.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                addScene.deleteKunde(stage);
+                DBVerbindung.deleteKunde(stage);
             }
         });
         MenuItem rechnungM2 = new MenuItem("Rechnung löschen");
         rechnungM2.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                addScene.deleteRechnung(stage);
+                DBVerbindung.deleteRechnung(stage);
             }
         });
         MenuItem reservierungM2 = new MenuItem("Reservierung löschen");
         reservierungM2.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                addScene.deleteReservierung(stage);
+                DBVerbindung.deleteReservierung(stage);
             }
         });
         MenuItem firmaM2 = new MenuItem("Firma löschen");
         firmaM2.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                addScene.deleteFirma(stage);
+                DBVerbindung.deleteFirma(stage);
             }
         });
         MenuItem veranstaltungM2 = new MenuItem("Veranstaltung löschen");
         veranstaltungM2.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                addScene.deleteVeranstaltung(stage);
+                DBVerbindung.deleteVeranstaltung(stage);
             }
         });
         deleteMenuM.getItems().addAll(kundeM2,rechnungM2,reservierungM2,firmaM2,veranstaltungM2);
@@ -541,14 +541,14 @@ public class Login extends Application{
         dataM.getItems().addAll(kundeM3,rechnungM3,reservierungM3,firmaM3,veranstaltungM3);
 
         bp2.setTop(menuBarM);
-        menuBarM.getMenus().addAll(addMenuM, editMenuM, deleteMenuM, dataM);
+        menuBarM.getMenus().addAll(addMenuM, editMenuM, deleteMenuM, GVStatus, dataM);
         bp2.setBackground(new Background(bg));
 
         einloggen.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
                 int id = Integer.parseInt(tf1.getText());
-                if(loginCheck(id, tf2.getText())){
+                if(DBVerbindung.loginCheck(id, tf2.getText())){
                     if(String.valueOf(id).length() == 4){
                         stage.setScene(adminScene);
                         stage.setTitle("TauTour (Administrator)");
@@ -557,12 +557,7 @@ public class Login extends Application{
                         stage.setTitle("TauTour (Mitarbeiter)");
                     }
                 } else {
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("Error");
-                    alert.setHeaderText("Falsche Eingabe");
-                    alert.setContentText("Bitte kontrollieren Sie Ihre Eingabe");
-
-                    alert.showAndWait();
+                    addScene.falseInputError();
                 }
             }
         });
@@ -574,43 +569,7 @@ public class Login extends Application{
 
     }
 
-    public boolean loginCheck(int id, String pass){
-        Connection conn = Verbindung.connect();
-        PreparedStatement ps = null;
-        ResultSet rs;
-        ResultSet rs2;
-        try {
-            if(String.valueOf(id).length() == 4){
-                ps = conn.prepareStatement("SELECT * FROM administrator WHERE id = " + id);
-                rs = ps.executeQuery();
-                if(rs.getString(4).equals(pass)){
-                    conn.close();
-                    return true;
-                } else {
-                    conn.close();
-                    return false;
-                }
-            } else if(String.valueOf(id).length() == 3){
-                ps = conn.prepareStatement("SELECT * FROM mitarbeiter WHERE id = " + id);
-                rs2 = ps.executeQuery();
-                if(rs2.getString(4).equals(pass)){
-                    conn.close();
-                    return true;
-                } else {
-                    conn.close();
-                    return false;
-                }
-            }
-            return false;
-        } catch (SQLException e){
-            e.printStackTrace();
-        }
-
-        return false;
-    }
-
     public static void main(String[] args) {
         launch(args);
     }
-
 }
